@@ -1,6 +1,6 @@
 .service-border{
     border: .5px solid lightblue;
-    border-radius: 6px;
+    border-radius: 5px;
 }
 
 .service-info {
@@ -11,7 +11,8 @@
 
 .img {
     border-radius: 8px;
-    width: 100%;   
+    width: 100%;  
+    margin-bottom: 5px; 
 }
 
 h3 {
@@ -24,17 +25,24 @@ h3 {
 
 button {
     width: 100%;
-    margin-top: 5px;
+    /* margin-top: 5px;
     border: 0;
     border-radius: 0 0 5px 5px;
     font-size: 16px;
     background-color: lightsteelblue;
     font-family: arial,sans-serif;
-    font-weight: 600;
+    font-weight: 600; */
 }
 
-button:hover {
+
+
+/* when you install react this line will help you to fix the text inside buttons */
+button p{
+    margin-bottom: 0;
+    padding: 4px 10px;
+}
+
+/* button:hover {
     background-color: orange;
     color: white;
-
-}
+} */

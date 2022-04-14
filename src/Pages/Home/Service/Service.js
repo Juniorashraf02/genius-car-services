@@ -13,7 +13,7 @@ const Service = ({ service }) => {
                 <small className="description">{description}</small>
             </div>
             <div>
-                <button>
+                <button className='btn btn-primary'>
                     <p>Book this service</p>
                 </button>
             </div>
