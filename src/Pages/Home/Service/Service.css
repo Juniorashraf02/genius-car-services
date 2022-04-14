@@ -1,0 +1,41 @@
+.service-border{
+    border: .5px solid lightblue;
+    border-radius: 6px;
+}
+
+.service-info {
+    /* margin: 15px; */
+    text-align: justify;
+    padding: 5px;
+}
+
+.img {
+    border-radius: 8px;
+    width: 100%;
+    
+}
+
+h3 {
+    line-height: 0;
+}
+
+.description {
+    color: gray;
+    
+
+}
+
+button {
+    width: 100%;
+    margin-top: 5px;
+    border: 0;
+    border-radius: 0 0 5px 5px;
+    font-size: 16px;
+    background-color: lightsteelblue;
+}
+
+button:hover {
+    background-color: orange;
+    color: white;
+
+}
