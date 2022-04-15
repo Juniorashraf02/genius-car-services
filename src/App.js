@@ -8,10 +8,11 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import ServiceDetails from './Pages/Servicedetail/ServiceDetails';
 import NotFound from './Pages/NotFound/NotFound';
 import Login from './Pages/Login/Login';
+import Signup from './Pages/Login/Signup';
 
 function App() {
   return (
-    <div className="App">
+    <div className="App bg-light">
       <Header/>
       <Routes>
         <Route path="/" element={<Home/>}></Route>
@@ -19,6 +20,7 @@ function App() {
         <Route path="/service/:serviceId" element={<ServiceDetails/>}></Route>
         <Route path="/about" element={<About/>}></Route>
         <Route path="/login" element={<Login/>}></Route>
+        <Route path="/signup" element={<Signup/>}></Route>
         <Route path="*" element={<NotFound/>}></Route>
       </Routes>
       <Footer/>
