@@ -25,7 +25,7 @@ const Signup = () => {
             <hr />
 
             <div className="container ">
-                <Form className='w-25 mx-auto' onSubmit={handleSubmit}>
+                <Form className='w-50 mx-auto' onSubmit={handleSubmit}>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
 
                         <Form.Control ref={nameRef} className="text-center" type="text" placeholder="Enter your name"  required /> <br />

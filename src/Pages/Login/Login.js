@@ -22,7 +22,7 @@ const Login = () => {
             <h1 className='text-primary m-4'>Please Login</h1>
 
             <div className="container ">
-                <Form className='w-25 mx-auto' onSubmit={handleSubmit}>
+                <Form className='w-50 mx-auto' onSubmit={handleSubmit}>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
 
                         <Form.Control ref={emailRef} className="text-center" type="email" placeholder="name@gmail.com" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2, 4}$" required />
