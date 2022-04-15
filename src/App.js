@@ -9,6 +9,8 @@ import ServiceDetails from './Pages/Servicedetail/ServiceDetails';
 import NotFound from './Pages/NotFound/NotFound';
 import Login from './Pages/Login/Login';
 import Signup from './Pages/Login/Signup';
+import ProceedTo from './Pages/Servicedetail/ProceedTo';
+import RequireAuth from './Pages/Login/RequireAuth/RequireAuth';
 
 function App() {
   return (
@@ -21,6 +23,12 @@ function App() {
         <Route path="/about" element={<About/>}></Route>
         <Route path="/login" element={<Login/>}></Route>
         <Route path="/signup" element={<Signup/>}></Route>
+        <Route path="/proceedto" element={
+          <RequireAuth>
+            <ProceedTo/>
+          </RequireAuth>
+        }></Route>
+
         <Route path="*" element={<NotFound/>}></Route>
       </Routes>
       <Footer/>

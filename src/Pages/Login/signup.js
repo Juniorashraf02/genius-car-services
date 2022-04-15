@@ -1,12 +1,23 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { useNavigate, Link } from 'react-router-dom';
+import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import auth from './../../firebase.init';
+
 
 const Signup = () => {
     const nameRef = useRef('');
     const emailRef = useRef('');
     const passRef = useRef('');
     const navigate = useNavigate('');
+    // const [errors, setErrors]= useState('');
+
+    const [
+        createUserWithEmailAndPassword,
+        user,
+        loading,
+        error,
+      ] = useCreateUserWithEmailAndPassword(auth);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -14,11 +25,26 @@ const Signup = () => {
         const passward = passRef.current.value;
         const email = emailRef.current.value;
         console.log(passward, email, name);
+        createUserWithEmailAndPassword(email, passward);
+    }
+
+    if(user){
+        navigate('/home')
     }
 
     const navigateToLogin = e => {
         navigate(`/login`);
     }
+
+    // const handleError = () => {
+    //     const msg = 'insert an valid email';
+    //     setErrors(msg);
+
+    // }
+
+
+   
+
     return (
         <div>
             <h1>Please Sign up</h1>
@@ -30,7 +56,7 @@ const Signup = () => {
 
                         <Form.Control ref={nameRef} className="text-center" type="text" placeholder="Enter your name"  required /> <br />
 
-                        <Form.Control ref={emailRef} className="text-center" type="email" placeholder="name@gmail.com" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2, 4}$" required />
+                        <Form.Control ref={emailRef} className="text-center" type="email" placeholder="name@gmail.com" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required />
                         <Form.Text className="text-muted">
                             We'll never share your email with anyone else.
                         </Form.Text>
@@ -46,7 +72,7 @@ const Signup = () => {
                     <Form.Group className="mb-3" controlId="formBasicCheckbox">
                         <Form.Check type="checkbox" label="Remember me" />
                     </Form.Group>
-                    <Button variant="primary" type="submit">Log In</Button>
+                    <Button variant="primary" type="submit">Sign Up</Button>
                 </Form>
                 <p>Already resigtered? <Link to="/login" onClick={navigateToLogin} ><u className='pe-auto'>Log in now</u></Link></p>
             </div>
