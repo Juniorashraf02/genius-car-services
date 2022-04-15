@@ -1,8 +1,13 @@
 import React, { useRef } from 'react';
 import { Button, Form } from 'react-bootstrap';
-import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { useSignInWithEmailAndPassword, useUpdateProfile, useSendPasswordResetEmail } from 'react-firebase-hooks/auth';
 import { useNavigate, Link, useLocation } from 'react-router-dom';
 import auth from './../../firebase.init';
+import SocialLogin from './SocialLogin/SocialLogin';
+import { ToastContainer, toast } from 'react-toastify';
+
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const Login = () => {
     const emailRef = useRef('');
@@ -10,6 +15,20 @@ const Login = () => {
     const navigate = useNavigate('');
     const location = useLocation('');
     let from = location.state?.from?.pathname || "/";
+    let errorElement;
+    const [sendPasswordResetEmail, sending, error3] = useSendPasswordResetEmail(
+        auth
+      );
+
+    const reset =async ()=>{
+       if(emailRef.current.value){
+        toast("email is sent");
+        await sendPasswordResetEmail(emailRef.current.value);
+       }
+       if(!emailRef.current.value){
+           toast("enter a valid email")
+       }
+    }
 
     const [
         signInWithEmailAndPassword,
@@ -17,6 +36,8 @@ const Login = () => {
         loading,
         error,
       ] = useSignInWithEmailAndPassword(auth);
+
+      const [updateProfile, updating, error1] = useUpdateProfile(auth);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -29,6 +50,9 @@ const Login = () => {
     
     if(user){
         navigate(from, { replace: true });
+    }
+    if (error) {
+        errorElement = <p className="text-danger fw-bold">Error: {error?.message}</p>  
     }
 
 
@@ -48,15 +72,18 @@ const Login = () => {
                     <Form.Group className="mb-3" controlId="formBasicPassword">
 
                         <Form.Control ref={passRef} className="text-center"  type="password" placeholder="Enter your Password" required />
-                        
+                        <p>{errorElement}</p>
                     </Form.Group>
-                    <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                        <Form.Check type="checkbox" label="Remember me" />
-                    </Form.Group>
-                    <Button variant="primary" type="submit">Log In</Button>
+
+                    
+                    
+                    <Button className="w-50" variant="primary" type="submit">Log In</Button>
                 </Form>
-                <p>New to genius car? <Link to="/signup"><u className='pe-auto'>sign up now</u></Link></p>
+                <p>New to genius car? <Link to="/signup"><u className='pe-auto '>sign up now</u></Link></p>
+                <p>Forgot passward? <b onClick={reset} className='user-select-none'>Reset now</b> </p>
+                <ToastContainer />
             </div>
+            <SocialLogin></SocialLogin>
         </div>
     );
 };
